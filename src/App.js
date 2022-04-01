@@ -1,11 +1,30 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import { React, useEffect, useState } from "react";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
+import { useKeyDown } from "react-keyboard-input-hook";
 
 function App() {
 
-  const [keyPressed, setKeyPressed] = useState("_");
+  // const [charHistory, setCharHistory] = useState([]);
+  
+
+
+  const handleKeyDown = (event) => {
+    const chPressed = String.fromCharCode(event.keyCode).toLowerCase();
+    console.log("Pressed", chPressed);
+    console.log("Hist", charHistory);
+    let r = [...charHistory, chPressed ];
+    console.log(r)
+    setCharHistory([1,2,3])
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <Container>
@@ -25,7 +44,7 @@ function App() {
             Keyboard Speed
           </Typography>
           <Typography variant="body" component="h1">
-            {keyPressed}
+            {charHistory}
           </Typography>
           <Keyboard
             physicalKeyboardHighlight={true}
@@ -48,8 +67,6 @@ function App() {
             }}
             // onChange={(input) => onChange(input)}
             // onKeyPress={(button) => onKeyPress(button)}
-            onKeyPress={console.log("asas")}
-            onChange={(input) => console.log(input)}
           />
         </Stack>
       </Box>
