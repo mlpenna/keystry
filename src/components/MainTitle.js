@@ -9,7 +9,7 @@ function MainTitle() {
       }}
     >
       <Typography variant="h3" component="h1" align="center">
-        Keyboard Speed
+        Keystry{" "}
       </Typography>
     </Box>
   );

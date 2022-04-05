@@ -1,18 +1,19 @@
-import { AppBar, Toolbar, Button } from "@mui/material";
+import { AppBar, Toolbar, IconButton } from "@mui/material";
+import ReplayOutlinedIcon from '@mui/icons-material/ReplayOutlined';
 import { startsNewGame } from "../lib/utils";
 
-function NavBar({ setCharHistory, setCharText }) {
+function NavBar({ setCharHistory, setCharText, setKeystrokeCounter }) {
   return (
     <AppBar elevation={0} color="transparent" position="static">
       <Toolbar>
-        <Button
-          onClick={() => startsNewGame(setCharHistory, setCharText)}
+        <IconButton
+          onClick={() => startsNewGame(setCharHistory, setCharText, setKeystrokeCounter)}
           size="small"
           variant="outlined"
           color="inherit"
         >
-          Reset
-        </Button>
+          <ReplayOutlinedIcon />
+        </IconButton>
       </Toolbar>
     </AppBar>
   );

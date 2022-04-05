@@ -27,7 +27,12 @@ export function resetCharHistory(setCharHistory) {
   setCharHistory([]);
 }
 
-export function startsNewGame(setCharHistory, setCharText) {
+export function startsNewGame(
+  setCharHistory,
+  setCharText,
+  setKeystrokeCounter
+) {
   resetCharHistory(setCharHistory);
   setCharText(Array.from(generateNewWordList()[0]));
+  setKeystrokeCounter(0);
 }

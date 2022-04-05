@@ -10,6 +10,7 @@ function App() {
   const [charHistory, setCharHistory] = useState([]);
   const [charText, setCharText] = useState([]);
   const [correctnessArray, setCorrectnessArray] = useState([]);
+  const [keystrokeCounter, setKeystrokeCounter] = useState(0);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -24,15 +25,15 @@ function App() {
 
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
-      //enter key -> starts new game
-      startsNewGame(setCharHistory, setCharText);
+      // 13 = enter key -> starts new game
+      startsNewGame(setCharHistory, setCharText, setKeystrokeCounter);
     }
     if (event.keyCode === 9) {
-      //disable tab key
+      // 9 = disable tab key
       event.preventDefault();
     }
     if (event.keyCode === 8) {
-      //handle backspace
+      // 8 = handle backspace
       setCharHistory((charHistory) => charHistory.slice(0, -1));
     }
     if ((event.keyCode >= 65 && event.keyCode <= 90) || event.keyCode === 32) {
@@ -41,12 +42,13 @@ function App() {
         ...charHistory,
         String.fromCharCode(event.keyCode).toLowerCase(),
       ]);
+      //imcrement keystroke
+      setKeystrokeCounter((keystrokeCounter) => keystrokeCounter + 1);
     }
   };
 
   return (
     <Container>
-      <NavBar setCharHistory={setCharHistory} setCharText={setCharText} />
       <Box
         sx={{
           display: "flex",
@@ -60,6 +62,11 @@ function App() {
             width: "600px",
           }}
         >
+          <NavBar
+            setCharHistory={setCharHistory}
+            setCharText={setCharText}
+            setKeystrokeCounter={setKeystrokeCounter}
+          />
           <MainTitle />
           <CharTextArea
             charText={charText}
@@ -67,9 +74,11 @@ function App() {
             correctnessArray={correctnessArray}
           />
           <VirtualKeyboard />
-          {/* <Box>{charHistory}</Box>
-          <Box>{charText}</Box>
-          <Box>{correctnessArray}</Box> */}
+          <Box>{keystrokeCounter}</Box>
+
+          <Box>{charHistory}</Box>
+          {/* <Box>{charText}</Box> */}
+          <Box>{correctnessArray}</Box>
         </Stack>
       </Box>
     </Container>
