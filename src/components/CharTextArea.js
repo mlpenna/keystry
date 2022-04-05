@@ -1,10 +1,10 @@
 import { Typography, Box } from "@mui/material";
 
-function CharTextArea({ charText }) {
+function CharTextArea({ charText, correctnessArray }) {
   return (
     <Box
       sx={{
-        border: 1,
+        // border: 1,
         borderRadius: 1,
         mt: 2,
         overflow: "hidden",
@@ -21,7 +21,23 @@ function CharTextArea({ charText }) {
           padding: 2,
         }}
       >
-        {charText}
+        {charText.map((c, i) =>
+          correctnessArray[i] ? (
+            <Box
+              component="div"
+              sx={{ background: "#aa11aa", display: "inline" }}
+            >
+              {c}
+            </Box>
+          ) : (
+            <Box
+              component="div"
+              sx={{ background: "#ffffff", display: "inline" }}
+            >
+              {c}
+            </Box>
+          )
+        )}
       </Typography>
     </Box>
   );

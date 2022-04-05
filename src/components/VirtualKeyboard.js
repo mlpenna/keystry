@@ -7,7 +7,7 @@ function VirtualKeyboard() {
     <Box
       sx={{
         width: 1,
-        border: 1,
+        // border: 1,
       }}
     >
       <Keyboard

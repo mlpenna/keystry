@@ -7,11 +7,27 @@ export function generateNewWordList() {
   });
 }
 
+export function computeCorrectnessArray(
+  charHistory,
+  charText,
+  setCorrectnessArray
+) {
+  let newCArray = [];
+  for (let i = 0; i < charHistory.length; i++) {
+    if (charHistory[i] === charText[i]) {
+      newCArray.push(1);
+    } else {
+      newCArray.push(0);
+    }
+  }
+  setCorrectnessArray(newCArray);
+}
+
 export function resetCharHistory(setCharHistory) {
   setCharHistory([]);
 }
 
 export function startsNewGame(setCharHistory, setCharText) {
   resetCharHistory(setCharHistory);
-  setCharText(generateNewWordList);
+  setCharText(Array.from(generateNewWordList()[0]));
 }

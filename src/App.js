@@ -1,6 +1,6 @@
 import { Box, Container, Stack } from "@mui/material";
 import { React, useEffect, useState } from "react";
-import { startsNewGame } from "./lib/utils";
+import { computeCorrectnessArray, startsNewGame } from "./lib/utils";
 import CharTextArea from "./components/CharTextArea";
 import MainTitle from "./components/MainTitle";
 import VirtualKeyboard from "./components/VirtualKeyboard";
@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 function App() {
   const [charHistory, setCharHistory] = useState([]);
   const [charText, setCharText] = useState([]);
+  const [correctnessArray, setCorrectnessArray] = useState([]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -16,6 +17,10 @@ function App() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
+  useEffect(() => {
+    computeCorrectnessArray(charHistory, charText, setCorrectnessArray);
+  }, [charHistory]);
 
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
@@ -56,10 +61,14 @@ function App() {
           }}
         >
           <MainTitle />
-          <CharTextArea charText={charText} />
+          <CharTextArea
+            charText={charText}
+            correctnessArray={correctnessArray}
+          />
           <VirtualKeyboard />
           <Box>{charHistory}</Box>
           <Box>{charText}</Box>
+          <Box>{correctnessArray}</Box>
         </Stack>
       </Box>
     </Container>
