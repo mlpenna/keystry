@@ -1,6 +1,7 @@
 import { Typography, Box } from "@mui/material";
+import Char from "./Char";
 
-function CharTextArea({ charText, correctnessArray }) {
+function CharTextArea({ charText, charHistory, correctnessArray }) {
   return (
     <Box
       sx={{
@@ -22,18 +23,10 @@ function CharTextArea({ charText, correctnessArray }) {
         }}
       >
         {charText.map((c, i) =>
-          correctnessArray[i] ? (
-            <Box
-              component="div"
-              sx={{ background: "#aa11aa", display: "inline" }}
-            >
-              {c}
-            </Box>
+          i < correctnessArray.length ? (
+            <Char c={c} correct={correctnessArray[i]} />
           ) : (
-            <Box
-              component="div"
-              sx={{ background: "#ffffff", display: "inline" }}
-            >
+            <Box component="div" sx={{ display: "inline" }}>
               {c}
             </Box>
           )

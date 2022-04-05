@@ -63,12 +63,13 @@ function App() {
           <MainTitle />
           <CharTextArea
             charText={charText}
+            charHistory={charHistory}
             correctnessArray={correctnessArray}
           />
           <VirtualKeyboard />
-          <Box>{charHistory}</Box>
+          {/* <Box>{charHistory}</Box>
           <Box>{charText}</Box>
-          <Box>{correctnessArray}</Box>
+          <Box>{correctnessArray}</Box> */}
         </Stack>
       </Box>
     </Container>
