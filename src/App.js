@@ -1,19 +1,14 @@
-import {
-  AppBar,
-  Toolbar,
-  Button,
-  Box,
-  Container,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Container, Stack } from "@mui/material";
 import { React, useEffect, useState } from "react";
-import Keyboard from "react-simple-keyboard";
-import "react-simple-keyboard/build/css/index.css";
-import { resetCharHistory } from "./lib/utils";
+import { startsNewGame } from "./lib/utils";
+import CharTextArea from "./components/CharTextArea";
+import MainTitle from "./components/MainTitle";
+import VirtualKeyboard from "./components/VirtualKeyboard";
+import NavBar from "./components/NavBar";
 
 function App() {
   const [charHistory, setCharHistory] = useState([]);
+  const [charText, setCharText] = useState([]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -23,6 +18,14 @@ function App() {
   }, []);
 
   const handleKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      //enter key -> starts new game
+      startsNewGame(setCharHistory, setCharText);
+    }
+    if (event.keyCode === 9) {
+      //disable tab key
+      event.preventDefault();
+    }
     if (event.keyCode === 8) {
       //handle backspace
       setCharHistory((charHistory) => charHistory.slice(0, -1));
@@ -38,19 +41,7 @@ function App() {
 
   return (
     <Container>
-      <AppBar elevation={0} color="transparent" position="static">
-        <Toolbar>
-          <Button
-            onClick={() => resetCharHistory(setCharHistory)}
-            size="small"
-            variant="outlined"
-            color="inherit"
-            // disabled
-          >
-            Reset
-          </Button>
-        </Toolbar>
-      </AppBar>
+      <NavBar setCharHistory={setCharHistory} setCharText={setCharText} />
       <Box
         sx={{
           display: "flex",
@@ -58,40 +49,17 @@ function App() {
         }}
       >
         <Stack
-          spacing="10"
+          spacing={2}
           sx={{
-            mt: 5,
+            mt: 3,
+            width: "600px",
           }}
         >
-          <Typography variant="h1" component="h1" align="justify">
-            Keyboard Speed
-          </Typography>
-          {/* <TextAreaKb /> */}
-          <Typography variant="body" component="h1">
-            {charHistory}
-          </Typography>
-          <Keyboard
-            physicalKeyboardHighlight={true}
-            physicalKeyboardHighlightTextColor={"black"}
-            layout={{
-              default: [
-                "` 1 2 3 4 5 6 7 8 9 0 - = {bksp}",
-                "{tab} q w e r t y u i o p [ ] \\",
-                "{lock} a s d f g h j k l ; ' {enter}",
-                "{shift} z x c v b n m , . / {shift}",
-                "{space}",
-              ],
-            }}
-            display={{
-              "{_}": " ",
-              "{tab}": "Tab",
-              "{bksp}": "Backspace",
-              "{enter}": "Enter",
-              "{shift}": "Shift",
-              "{space}": " ",
-              "{lock}": "Fixa",
-            }}
-          />
+          <MainTitle />
+          <CharTextArea charText={charText} />
+          <VirtualKeyboard />
+          <Box>{charHistory}</Box>
+          <Box>{charText}</Box>
         </Stack>
       </Box>
     </Container>
