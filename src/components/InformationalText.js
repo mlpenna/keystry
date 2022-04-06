@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-function InstructionText() {
+function InformationalText() {
   return (
     <Box
       sx={{
@@ -8,10 +8,10 @@ function InstructionText() {
       }}
     >
       <Typography variant="subtitle2" component="p" align="center">
-        Pressione Enter para começar...
+        Pressione Enter para começar um novo teste...
       </Typography>
     </Box>
   );
 }
 
-export default InstructionText;
+export default InformationalText;
