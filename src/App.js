@@ -5,6 +5,7 @@ import CharTextArea from "./components/CharTextArea";
 import MainTitle from "./components/MainTitle";
 import VirtualKeyboard from "./components/VirtualKeyboard";
 import NavBar from "./components/NavBar";
+import InformationalText from "./components/InformationalText";
 
 function App() {
   const [charHistory, setCharHistory] = useState([]);
@@ -68,17 +69,17 @@ function App() {
             setKeystrokeCounter={setKeystrokeCounter}
           />
           <MainTitle />
+          <InformationalText />
           <CharTextArea
             charText={charText}
             charHistory={charHistory}
             correctnessArray={correctnessArray}
           />
           <VirtualKeyboard />
-          <Box>{keystrokeCounter}</Box>
-
-          <Box>{charHistory}</Box>
+          {/* <Box>{keystrokeCounter}</Box> */}
+          {/* <Box>{charHistory}</Box> */}
           {/* <Box>{charText}</Box> */}
-          <Box>{correctnessArray}</Box>
+          {/* <Box>{correctnessArray}</Box> */}
         </Stack>
       </Box>
     </Container>
