@@ -1,5 +1,6 @@
 import { Box, Container, Stack } from "@mui/material";
 import { React, useEffect, useState } from "react";
+import { useTimer } from "react-timer-hook";
 import { computeCorrectnessArray, startsNewGame } from "./lib/utils";
 import CharTextArea from "./components/CharTextArea";
 import MainTitle from "./components/MainTitle";
@@ -12,6 +13,7 @@ function App() {
   const [charText, setCharText] = useState([]);
   const [correctnessArray, setCorrectnessArray] = useState([]);
   const [keystrokeCounter, setKeystrokeCounter] = useState(0);
+  const [gameHasStarted, setGameHasStarted] = useState(false);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -27,7 +29,7 @@ function App() {
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
       // 13 = enter key -> starts new game
-      startsNewGame(setCharHistory, setCharText, setKeystrokeCounter);
+      startsNewGame(setCharHistory, setCharText, setKeystrokeCounter, setGameHasStarted);
     }
     if (event.keyCode === 9) {
       // 9 = disable tab key
@@ -69,7 +71,7 @@ function App() {
             setKeystrokeCounter={setKeystrokeCounter}
           />
           <MainTitle />
-          <InformationalText />
+          <InformationalText gameHasStarted={gameHasStarted} />
           <CharTextArea
             charText={charText}
             charHistory={charHistory}
