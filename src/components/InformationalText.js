@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-function InformationalText({ gameHasStarted }) {
+function InformationalText({ gameHasStarted, timerSeconds }) {
   return (
     <Box
       sx={{

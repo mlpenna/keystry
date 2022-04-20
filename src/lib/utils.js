@@ -31,10 +31,12 @@ export function startsNewGame(
   setCharHistory,
   setCharText,
   setKeystrokeCounter,
-  setGameHasStarted
+  setGameIsRunning,
+  resetTimer
 ) {
   resetCharHistory(setCharHistory);
   setCharText(Array.from(generateNewWordList()[0]));
   setKeystrokeCounter(0);
-  setGameHasStarted(true);
+  setGameIsRunning(true);
+  resetTimer();
 }
