@@ -30,9 +30,13 @@ export function resetCharHistory(setCharHistory) {
 export function startsNewGame(
   setCharHistory,
   setCharText,
-  setKeystrokeCounter
+  setKeystrokeCounter,
+  setGameIsRunning,
+  resetTimer
 ) {
   resetCharHistory(setCharHistory);
   setCharText(Array.from(generateNewWordList()[0]));
   setKeystrokeCounter(0);
+  setGameIsRunning(true);
+  resetTimer();
 }

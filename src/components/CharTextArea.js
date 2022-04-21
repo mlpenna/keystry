@@ -24,9 +24,9 @@ function CharTextArea({ charText, charHistory, correctnessArray }) {
       >
         {charText.map((c, i) =>
           i < correctnessArray.length ? (
-            <Char c={c} correct={correctnessArray[i]} />
+            <Char key={i} c={c} correct={correctnessArray[i]} />
           ) : (
-            <Box component="div" sx={{ display: "inline" }}>
+            <Box key={i} component="div" sx={{ display: "inline" }}>
               {c}
             </Box>
           )
