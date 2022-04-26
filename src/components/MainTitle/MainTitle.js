@@ -8,7 +8,7 @@ function MainTitle() {
         // border: 1,
       }}
     >
-      <Typography variant="h3" component="h1" align="center">
+      <Typography variant="h3" component="h1" align="left">
         Keystry{" "}
       </Typography>
     </Box>
