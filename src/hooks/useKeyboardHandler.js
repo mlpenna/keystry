@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { startsNewGame } from "../lib/utils";
 
 const useKeyboardHandler = (
   setCharHistory,
   setCharText,
-  setKeystrokeCounter,
   setGameIsRunning,
   resetTimer
 ) => {
@@ -14,7 +13,6 @@ const useKeyboardHandler = (
       startsNewGame(
         setCharHistory,
         setCharText,
-        setKeystrokeCounter,
         setGameIsRunning,
         resetTimer
       );
@@ -34,7 +32,6 @@ const useKeyboardHandler = (
         String.fromCharCode(event.keyCode).toLowerCase(),
       ]);
       //imcrement keystroke
-      setKeystrokeCounter((keystrokeCounter) => keystrokeCounter + 1);
     }
   };
 
@@ -49,4 +46,3 @@ const useKeyboardHandler = (
 };
 
 export default useKeyboardHandler;
-

@@ -1,7 +1,7 @@
 import { Typography, Box } from "@mui/material";
-import Char from "./Char";
+import Char from "../Char/Char";
 
-function CharTextArea({ charText, charHistory, correctnessArray }) {
+function CharTextArea({ goalCharArray, typedCharArray, correctnessArray }) {
   return (
     <Box
       sx={{
@@ -12,17 +12,21 @@ function CharTextArea({ charText, charHistory, correctnessArray }) {
         textOverflow: "ellipsis",
         width: 1,
         minHeight: 200,
-        background: "#dce6df",
+        background: "#04293A",
       }}
     >
       <Typography
         variant="h6"
         component="body"
+        align="justify"
         sx={{
           padding: 2,
+          backgroundColor: "transparent",
+          fontSize: 29,
+          color: "#fafafa"
         }}
       >
-        {charText.map((c, i) =>
+        {goalCharArray.map((c, i) =>
           i < correctnessArray.length ? (
             <Char key={i} c={c} correct={correctnessArray[i]} />
           ) : (

@@ -23,10 +23,6 @@ export function computeCorrectnessArray(
   setCorrectnessArray(newCArray);
 }
 
-export function resetCharHistory(setCharHistory) {
-  setCharHistory([]);
-}
-
 export function startsNewGame(
   setCharHistory,
   setCharText,
@@ -34,7 +30,7 @@ export function startsNewGame(
   setGameIsRunning,
   resetTimer
 ) {
-  resetCharHistory(setCharHistory);
+  setCharHistory([]);
   setCharText(Array.from(generateNewWordList()[0]));
   setKeystrokeCounter(0);
   setGameIsRunning(true);
