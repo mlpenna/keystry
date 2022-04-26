@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { computeCorrectnessArray } from "./lib/utils";
 import CharTextArea from "./components/CharTextArea/CharTextArea";
 import MainTitle from "./components/MainTitle/MainTitle";
-// import VirtualKeyboard from "./components/VirtualKeyboard";
 import NavBar from "./components/NavBar/NavBar";
 import InformationalText from "./components/InformationalText/InformationalText";
 import useTimer from "./hooks/useTimer";
@@ -67,14 +66,12 @@ function App() {
               setTypedCharArray={setTypedCharArray}
               setGoalCharArray={setGoalCharArray}
             />
-            {/* <MainTitle /> */}
             <InformationalText gameHasStarted={gameIsRunning} />
             <CharTextArea
               goalCharArray={goalCharArray}
               typedCharArray={typedCharArray}
               correctnessArray={correctnessArray}
             />
-            {/* <VirtualKeyboard /> */}
             <Box>{seconds}</Box>
           </Stack>
         </Box>

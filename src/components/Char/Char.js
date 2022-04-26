@@ -1,8 +1,15 @@
 import { Box } from "@mui/material";
 
 function Char({ c, correct }) {
+  if (correct === null) {
+    return (
+      <Box component="div" sx={{ color: "#aaaaaa", display: "inline" }}>
+        {c}
+      </Box>
+    );
+  }
   return correct ? (
-    <Box component="div" sx={{ color: "#9aeda5", display: "inline" }}>
+    <Box component="div" sx={{ color: "#ffffff", display: "inline" }}>
       {c}
     </Box>
   ) : (
