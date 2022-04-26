@@ -11,7 +11,7 @@ function CharTextArea({ goalCharArray, typedCharArray, correctnessArray }) {
         overflow: "hidden",
         textOverflow: "ellipsis",
         width: 1,
-        minHeight: 200,
+        // minHeight: 320,
         background: "#04293A",
       }}
     >
@@ -23,16 +23,14 @@ function CharTextArea({ goalCharArray, typedCharArray, correctnessArray }) {
           padding: 2,
           backgroundColor: "transparent",
           fontSize: 29,
-          color: "#fafafa"
+          color: "#fafafa",
         }}
       >
         {goalCharArray.map((c, i) =>
           i < correctnessArray.length ? (
             <Char key={i} c={c} correct={correctnessArray[i]} />
           ) : (
-            <Box key={i} component="div" sx={{ display: "inline" }}>
-              {c}
-            </Box>
+            <Char key={i} c={c} correct={null} />
           )
         )}
       </Typography>
