@@ -1,17 +1,16 @@
 import { Box, Typography } from "@mui/material";
 
-function InformationalText({ gameHasStarted, timerSeconds }) {
+function InformationalText({ seconds }) {
+  // console.log(gameIsRunning);
+
   return (
     <Box
       sx={{
         width: 1,
       }}
     >
-      <Typography variant="subtitle2" component="p" align="center">
-        Pressione Enter para começar um novo teste...
-      </Typography>
-      <Typography variant="subtitle2" component="p" align="center">
-        {gameHasStarted.toString()}
+      <Typography variant="h4" component="h6" align="left" color="#ECB365">
+        {seconds === -1 ? "_" : seconds}
       </Typography>
     </Box>
   );

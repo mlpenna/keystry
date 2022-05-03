@@ -3,19 +3,20 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import { useEffect, useState } from "react";
-import { computeCorrectnessArray } from "./lib/utils";
+import { computeCorrectnessArray, endGame } from "./lib/utils";
 import CharTextArea from "./components/CharTextArea/CharTextArea";
-import MainTitle from "./components/MainTitle/MainTitle";
 import NavBar from "./components/NavBar/NavBar";
 import InformationalText from "./components/InformationalText/InformationalText";
 import useTimer from "./hooks/useTimer";
 import useKeyboardHandler from "./hooks/useKeyboardHandler";
+import EndGameStats from "./components/EndGameStats/EndGameStats";
+import Footer from "./components/Footer/Footer";
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
     background: {
-      default: '#064663',
+      default: "#064663",
     },
   },
 });
@@ -25,12 +26,16 @@ function App() {
   const [goalCharArray, setGoalCharArray] = useState([]);
   const [correctnessArray, setCorrectnessArray] = useState([]);
   const [gameIsRunning, setGameIsRunning] = useState(false);
+  const [gameHasEnded, setGameHasEnded] = useState(false);
 
   const [resetTimer, seconds] = useTimer();
+
   useKeyboardHandler(
+    gameIsRunning,
     setTypedCharArray,
     setGoalCharArray,
     setGameIsRunning,
+    setGameHasEnded,
     resetTimer
   );
 
@@ -40,7 +45,7 @@ function App() {
 
   useEffect(() => {
     if (seconds === 0) {
-      setGameIsRunning(false);
+      endGame(setGameHasEnded, setGameIsRunning);
     }
   }, [seconds]);
 
@@ -66,16 +71,35 @@ function App() {
               setTypedCharArray={setTypedCharArray}
               setGoalCharArray={setGoalCharArray}
             />
-            <InformationalText gameHasStarted={gameIsRunning} />
-            <CharTextArea
-              goalCharArray={goalCharArray}
-              typedCharArray={typedCharArray}
-              correctnessArray={correctnessArray}
-            />
-            <Box>{seconds}</Box>
+            {!gameHasEnded && gameIsRunning ? (
+              <>
+                <InformationalText
+                  seconds={seconds}
+                  gameIsRunning={gameIsRunning}
+                />
+                <CharTextArea
+                  gameIsRunning={gameIsRunning}
+                  goalCharArray={goalCharArray}
+                  typedCharArray={typedCharArray}
+                  correctnessArray={correctnessArray}
+                />
+              </>
+            ) : (
+              <>
+                <EndGameStats />
+              </>
+            )}
           </Stack>
         </Box>
       </Container>
+      <Footer />
+
+      {/* 
+      <Box>{typedCharArray + " " + typedCharArray.length}</Box>
+      <Box>{correctnessArray + " " + correctnessArray.length}</Box>
+      <Box>{"running: " + gameIsRunning.toString()}</Box>
+      <Box>{"hasEnded: " + gameHasEnded.toString()}</Box>
+      <Box>{seconds}</Box> */}
     </ThemeProvider>
   );
 }

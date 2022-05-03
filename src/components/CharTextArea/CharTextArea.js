@@ -1,8 +1,8 @@
 import { Typography, Box } from "@mui/material";
 import Char from "../Char/Char";
 
-function CharTextArea({ goalCharArray, typedCharArray, correctnessArray }) {
-  return (
+function CharTextArea({ gameIsRunning, goalCharArray, correctnessArray }) {
+  return gameIsRunning ? (
     <Box
       sx={{
         // border: 1,
@@ -35,7 +35,7 @@ function CharTextArea({ goalCharArray, typedCharArray, correctnessArray }) {
         )}
       </Typography>
     </Box>
-  );
+  ) : null;
 }
 
 export default CharTextArea;

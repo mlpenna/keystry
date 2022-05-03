@@ -1,5 +1,11 @@
 import randomWords from "random-words";
 
+// export function charArray
+
+export function computeStats(typedCharArray, goalCharArray, correctnessArray) {
+  return null;
+}
+
 export function generateNewWordList() {
   return randomWords({
     exactly: 1,
@@ -8,13 +14,13 @@ export function generateNewWordList() {
 }
 
 export function computeCorrectnessArray(
-  charHistory,
-  charText,
+  typedCharArray,
+  goalCharArray,
   setCorrectnessArray
 ) {
   let newCArray = [];
-  for (let i = 0; i < charHistory.length; i++) {
-    if (charHistory[i] === charText[i]) {
+  for (let i = 0; i < typedCharArray.length; i++) {
+    if (typedCharArray[i] === goalCharArray[i]) {
       newCArray.push(1);
     } else {
       newCArray.push(0);
@@ -26,13 +32,18 @@ export function computeCorrectnessArray(
 export function startsNewGame(
   setCharHistory,
   setCharText,
-  setKeystrokeCounter,
   setGameIsRunning,
+  setGameHasEnded,
   resetTimer
 ) {
   setCharHistory([]);
   setCharText(Array.from(generateNewWordList()[0]));
-  setKeystrokeCounter(0);
   setGameIsRunning(true);
+  setGameHasEnded(false);
   resetTimer();
 }
+
+export function endGame(setGameHasEnded, setGameIsRunning) {
+  setGameHasEnded(true);
+  setGameIsRunning(false);
+} 

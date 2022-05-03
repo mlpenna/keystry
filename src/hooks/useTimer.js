@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useTimer = (initialSeconds = 10) => {
-  const [seconds, setSeconds] = useState(initialSeconds);
+  const [seconds, setSeconds] = useState(-1);
   const [isActive, setIsActive] = useState(false);
 
   function resetTimer() {

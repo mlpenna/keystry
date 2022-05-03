@@ -5,10 +5,9 @@ function MainTitle() {
     <Box
       sx={{
         width: 1,
-        // border: 1,
       }}
     >
-      <Typography variant="h3" component="h1" align="left">
+      <Typography variant="h3" component="h1" align="center">
         Keystry{" "}
       </Typography>
     </Box>
