@@ -6,8 +6,9 @@ function CharTextArea({ gameIsRunning, goalCharArray, correctnessArray }) {
     <Box
       sx={{
         // border: 1,
-        borderRadius: 1,
+        borderRadius: 16,
         mt: 2,
+        p: 2,
         overflow: "hidden",
         textOverflow: "ellipsis",
         width: 1,

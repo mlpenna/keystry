@@ -7,9 +7,10 @@ function InformationalText({ seconds }) {
     <Box
       sx={{
         width: 1,
+        // textAlign: "center",
       }}
     >
-      <Typography variant="h4" component="h6" align="left" color="#ECB365">
+      <Typography variant="h4" component="h6" align="center" color="#ECB365">
         {seconds === -1 ? "_" : seconds}
       </Typography>
     </Box>

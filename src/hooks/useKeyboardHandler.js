@@ -1,18 +1,42 @@
 import { useEffect } from "react";
-import { startsNewGame } from "../lib/utils";
+import { startsNewGame, endGame } from "../lib/utils";
 
 const useKeyboardHandler = (
+  typedCharArray,
+  goalCharArray,
+  correctnessArray,
   gameIsRunning,
   setCharHistory,
   setCharText,
   setGameIsRunning,
   setGameHasEnded,
-  resetTimer
+  resetTimer,
+  setWpm,
+  setAcc
 ) => {
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
       // 13 = enter key -> starts new game
-      startsNewGame(setCharHistory, setCharText, setGameIsRunning, setGameHasEnded, resetTimer);
+      startsNewGame(
+        setCharHistory,
+        setCharText,
+        setGameIsRunning,
+        setGameHasEnded,
+        resetTimer,
+        setWpm,
+        setAcc
+      );
+    }
+
+    if (event.keyCode === 16) {
+      // 13 = enter key -> starts new game
+      endGame(
+        setGameHasEnded,
+        setGameIsRunning,
+        typedCharArray,
+        goalCharArray,
+        correctnessArray
+      );
     }
     if (event.keyCode === 9) {
       // 9 = disable tab key

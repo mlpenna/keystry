@@ -11,7 +11,7 @@ function NavBar({ setCharHistory, setCharText, setKeystrokeCounter }) {
       color="transparent"
       position="static"
       sx={{
-        mb: 15,
+        mb: 10,
       }}
     >
       <Toolbar>

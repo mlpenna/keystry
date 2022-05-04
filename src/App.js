@@ -27,16 +27,23 @@ function App() {
   const [correctnessArray, setCorrectnessArray] = useState([]);
   const [gameIsRunning, setGameIsRunning] = useState(false);
   const [gameHasEnded, setGameHasEnded] = useState(false);
+  const [wpm, setWpm] = useState(0);
+  const [acc, setAcc] = useState(0);
 
   const [resetTimer, seconds] = useTimer();
 
   useKeyboardHandler(
+    typedCharArray,
+    goalCharArray,
+    correctnessArray,
     gameIsRunning,
     setTypedCharArray,
     setGoalCharArray,
     setGameIsRunning,
     setGameHasEnded,
-    resetTimer
+    resetTimer,
+    setWpm,
+    setAcc
   );
 
   useEffect(() => {
@@ -45,14 +52,22 @@ function App() {
 
   useEffect(() => {
     if (seconds === 0) {
-      endGame(setGameHasEnded, setGameIsRunning);
+      let [wpm, acc] = endGame(
+        setGameHasEnded,
+        setGameIsRunning,
+        typedCharArray,
+        goalCharArray,
+        correctnessArray
+      );
+      setWpm(wpm);
+      setAcc(acc);
+      // console.log(wpm, acc);
     }
   }, [seconds]);
 
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-
       <Container>
         <Box
           sx={{
@@ -86,7 +101,7 @@ function App() {
               </>
             ) : (
               <>
-                <EndGameStats />
+                <EndGameStats wpm={wpm} acc={acc} />
               </>
             )}
           </Stack>
@@ -99,7 +114,10 @@ function App() {
       <Box>{correctnessArray + " " + correctnessArray.length}</Box>
       <Box>{"running: " + gameIsRunning.toString()}</Box>
       <Box>{"hasEnded: " + gameHasEnded.toString()}</Box>
-      <Box>{seconds}</Box> */}
+      <Box>{seconds}</Box> 
+      <Box>{wpm}</Box>
+      <Box>{acc}</Box>
+      */}
     </ThemeProvider>
   );
 }
