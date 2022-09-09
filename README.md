@@ -33,32 +33,15 @@ Uma aplicação web que implementa um teste de digitaçao. Realiza o cálculo de
    ```sh
    git clone https://github.com/mlpenna/kinghost-painel.git
    ```
-2. Instale os pacotes NPM 
+2. Instale as dependências
    ```sh
    npm install
    ```
-3. Crie o arquivo `.env.local` no diretório raiz do projeto, preenchendo com o seu usuário e senha da API Kinghost nos dois primeiros campos:
+3. Execute a aplicação
    ```sh
-    API_USER={USUARIO_API}
-    API_PASSWORD={SENHA_API}
-    API_BASE_CLIENTES=https://api.uni5.net/cliente.json
-    API_BASE_DOMAIN_BY_CLIENTE=https://api.uni5.net/dominio/
-    API_BASE_DOMAIN_INFO=https://api.uni5.net/dominio/informacoes/
-    API_BASE_DOMAIN_EMAILS=https://api.uni5.net/email/
-    API_BASE_EMAIL_TAMANHO=https://api.kinghost.net/email/edittamanho/;
+   npm start
    ```
-4. Execute o ambiente de desenvolvimento do Next.js
-   ```sh
-   npm run dev
-   ```
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Seleção de cliente e lista de domínio de cada cliente
-- [x] Visualização de informações sobre domínio (dados essenciais, espaço disponível para web e e-mails no servidor)
-- [x] Gerenciamento de espaço disponível para as caixas de e-mail do domínio
-
+   
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
